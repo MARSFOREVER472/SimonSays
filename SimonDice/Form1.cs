@@ -1,3 +1,5 @@
+using System.Diagnostics; // Librería especial para la clase.
+
 namespace SimonDice
 {
     public partial class Form1 : Form
@@ -42,7 +44,40 @@ namespace SimonDice
         // Método creado desde un control (button).
         private void ButtonClickEvent(object sender, EventArgs e)
         {
-            // EN INSTANTES...
+            // Procedemos a utilizar una condición para poder pasar de nivel al obtener los éxitos.
+
+            if (score == 3 && level < 7)
+            {
+                level++; // Pasa al siguiente nivel.
+                score = 0; // Al pasar de nivel, se inicializa en 0 los puntos.
+            }
+
+            correctOrder = string.Empty; // El oponente inventa una secuencia en el orden correcto.
+            playerOrder = string.Empty; // El jugador tiene que seguir al oponente para poder pasar de nivel.
+            chooseBoxes.Clear(); // Se borra todo el tablero al escoger un cuadrado.
+            chooseBoxes = pictureBoxes.OrderBy(x => rand.Next()).Take(level).ToList(); // Se debe escoger un cuadrado siguiendo la secuencia para no fallar.
+
+            // Al escoger cualquier cuadrado del tablero, utilizaremos un ciclo for.
+
+            for (int i = 0; i < chooseBoxes.Count; i++)
+            {
+                correctOrder += chooseBoxes[i].Name + " "; // Cuando escoge un cuadrado.
+            }
+
+            // Para los colores aleatorios de cada cuadrado, utilizaremos la siguiente iteración (foreach).
+
+            foreach (PictureBox x in pictureBoxes)
+            {
+                x.BackColor = Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256)); // Genera unos colores aleatorios para cada cuadrado del tablero.
+            }
+
+            // Otras sentencias de código son las siguientes...
+
+            Debug.WriteLine(correctOrder); // Debug principal.
+            index = 0; // Valor del índice inicial.
+            timeLimit = 0; // El tiempo finaliza en 0.
+            selectingColors = true; // Los colores pueden ser cualquiera (Aleatorio).
+            temporizador.Start(); // Inicializa el tiempo al comenzar el juego (QUE EMPIECE EL JUEGO!!!!!!!!!).
         }
 
         // Ahora vamos a crear un método para ordenar los cuadrados.
