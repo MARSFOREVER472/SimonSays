@@ -38,7 +38,7 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(90, 15);
+            label1.Location = new Point(96, 9);
             label1.Name = "label1";
             label1.Size = new Size(417, 60);
             label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(115, 380);
+            label2.Location = new Point(108, 360);
             label2.Name = "label2";
             label2.Size = new Size(381, 28);
             label2.TabIndex = 1;
@@ -57,7 +57,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(238, 425);
+            button1.Location = new Point(238, 408);
             button1.Name = "button1";
             button1.Size = new Size(112, 50);
             button1.TabIndex = 2;
