@@ -10,7 +10,7 @@ namespace SimonDice
         int blocksX = 160; // Ancho total de cada cuadrado.
         int blocksY = 80; // Altura total de cada cuadrado.
         int score = 0; // Puntuación inicial del juego.
-        int level = 4; // Comienzo del nivel.
+        int level = 3; // Comienzo del nivel.
 
         // Ahora crearemos algunas variables mediante listas la aparición de los bloques en el juego.
 
@@ -49,7 +49,7 @@ namespace SimonDice
                 switch (timeLimit)
                 {
                     case 10: // Si son 10 segundos.
-                        temp = chooseBoxes[index].BackColor; 
+                        temp = chooseBoxes[index].BackColor;
                         chooseBoxes[index].BackColor = Color.Beige; // Se debe escoger un color cuando es una pista.
                         break;
 
@@ -81,6 +81,29 @@ namespace SimonDice
                         break;
                 }
             }
+
+            // Ahora realizaremos las siguientes acciones de éxito y fracaso mediante un "if" y un "else".
+
+            if (tries >= level)
+            {
+                // Cuando aciertas algunos cuadrados en cada nivel del juego...
+
+                if (correctOrder == playerOrder)
+                {
+                    tries = 0; // Se inicializa en 0 el número de intentos.
+                    temporizador.Stop(); // Frena el temporizador infinitamente (cualquier número).
+                    MessageBox.Show("Felicidades, lo hiciste muy bien!!"); // Felicidades, lo hiciste muy bien!!.
+                    score++; // Aumenta la puntuación al acertar cada cuadrado.
+                }
+                else // En caso contrario si es que el jugador falla.
+                {
+                    tries = 0; // Se inicializa en 0 el número de intentos.
+                    temporizador.Stop(); // Frena el temporizador infinitamente (cualquier número).
+                    MessageBox.Show("Inténtalo nuevamente!!", "No, no es el MH!!"); // No, no es el MM!! || inténtalo nuevamente.
+                }
+            }
+
+            lblInformal.Text = "Click on " + level + " blocks in the same sequence."; // Mensaje de texto como instrucción o consejo fundamental del juego.
         }
 
         // Método creado desde un control (button).
@@ -160,7 +183,20 @@ namespace SimonDice
         // Generaremos un nuevo método al hacer click a cada cuadrado.
         private void ClickOnPictureBox(object? sender, EventArgs e)
         {
-            // EN INSTANTES...
+            // Por último, en este método asignaremos algunas funcionalidades a los cuadrados del juego.
+
+            if (!selectingColors && chooseBoxes.Count > 1)
+            {
+                PictureBox temp = sender as PictureBox;
+                temp.BackColor = Color.Black; // Al inicio del juego, los cuadrados serán de color negro.
+                playerOrder += temp.Name + " "; // El nombre se mostrará en el depurador local de Windows.
+                Debug.WriteLine(playerOrder); // El debug de esta variable se mostrará en la consola del depurador.
+                tries++; // El número de intentos se incrementará.
+            }
+            else // En caso contrario, no hará nada.
+            {
+                return;
+            }
         }
     }
 }
