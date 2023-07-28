@@ -10,7 +10,7 @@ namespace SimonDice
         int blocksX = 160; // Ancho total de cada cuadrado.
         int blocksY = 80; // Altura total de cada cuadrado.
         int score = 0; // Puntuación inicial del juego.
-        int level = 3; // Comienzo del nivel.
+        int level = 4; // Comienzo del nivel.
 
         // Ahora crearemos algunas variables mediante listas la aparición de los bloques en el juego.
 
@@ -38,7 +38,49 @@ namespace SimonDice
         // Método creado desde el tick de este componente (temporizador).
         private void GameTimerEvent(object sender, EventArgs e)
         {
-            // EN INSTANTES...
+            // Procederemos a crear un algoritmo mediante un temporizador en cuestión de segundos.
+
+            if (selectingColors) // Si se selecciona cualquier cuadrado de un color distinto.
+            {
+                timeLimit++; // El tiempo límite se incrementa.
+
+                // Por cada segundo del temporizador, utilizaremos una estructura del switch.
+
+                switch (timeLimit)
+                {
+                    case 10: // Si son 10 segundos.
+                        temp = chooseBoxes[index].BackColor; 
+                        chooseBoxes[index].BackColor = Color.Beige; // Se debe escoger un color cuando es una pista.
+                        break;
+
+                    case 20: // Si son 20 segundos.
+                        chooseBoxes[index].BackColor = temp;
+                        break;
+
+                    case 30: // Si son 30 segundos.
+                        chooseBoxes[index].BackColor = Color.Beige; // Se debe escoger un color cuando es una pista.
+                        break;
+
+                    case 40: // Si son 40 segundos.
+                        chooseBoxes[index].BackColor = temp;
+                        break;
+
+                    case 50: // Si son 50 segundos.
+
+                        // En estos momentos se divide en un algoritmo diferente a los primeros 50 segundos.
+
+                        if (index < chooseBoxes.Count - 1)
+                        {
+                            index++; // El valor del índice se incrementa.
+                            timeLimit = 0; // El tiempo límite se inicializa.
+                        }
+                        else // En caso contrario...
+                        {
+                            selectingColors = false; // No se seleccionará un color para cada cuadrado.
+                        }
+                        break;
+                }
+            }
         }
 
         // Método creado desde un control (button).
@@ -73,7 +115,7 @@ namespace SimonDice
 
             // Otras sentencias de código son las siguientes...
 
-            Debug.WriteLine(correctOrder); // Debug principal.
+            Debug.WriteLine(correctOrder); // El nombre de un cuadrado se muestra en la consola.
             index = 0; // Valor del índice inicial.
             timeLimit = 0; // El tiempo finaliza en 0.
             selectingColors = true; // Los colores pueden ser cualquiera (Aleatorio).
