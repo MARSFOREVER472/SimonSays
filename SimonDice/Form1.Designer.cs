@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             label1 = new Label();
-            label2 = new Label();
+            lblInformal = new Label();
             button1 = new Button();
             temporizador = new System.Windows.Forms.Timer(components);
             SuspendLayout();
@@ -44,15 +44,15 @@
             label1.TabIndex = 0;
             label1.Text = "Simon Says Game C#";
             // 
-            // label2
+            // lblInformal
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(108, 360);
-            label2.Name = "label2";
-            label2.Size = new Size(381, 28);
-            label2.TabIndex = 1;
-            label2.Text = "Click on the 3 blocks in the same sequence";
+            lblInformal.AutoSize = true;
+            lblInformal.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblInformal.Location = new Point(108, 360);
+            lblInformal.Name = "lblInformal";
+            lblInformal.Size = new Size(381, 28);
+            lblInformal.TabIndex = 1;
+            lblInformal.Text = "Click on the 3 blocks in the same sequence";
             // 
             // button1
             // 
@@ -76,7 +76,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(598, 494);
             Controls.Add(button1);
-            Controls.Add(label2);
+            Controls.Add(lblInformal);
             Controls.Add(label1);
             Name = "Form1";
             ShowIcon = false;
@@ -88,7 +88,7 @@
         #endregion
 
         private Label label1;
-        private Label label2;
+        private Label lblInformal;
         private Button button1;
         private System.Windows.Forms.Timer temporizador;
     }
